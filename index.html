@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+</head>
+<style>
+    #pageWrap {
+     text-align: center;
+     margin: 0 auto;
+}
+
+</style>
+
+<body>
+
+    <div id="pageWrap">
+
+        <h1 id="crystals-game">Crystals Game!</h1>
+
+        <div class="Gems">
+            <img id="purple" src="https://images-na.ssl-images-amazon.com/images/I/61h0eE0OhEL._SX466_.jpg"
+                alt="Purple Crystal" style="width:100px;height:100px;">
+            <img id="blue" src="https://images-na.ssl-images-amazon.com/images/I/61DzstO1hJL._SY450_.jpg"
+                alt="Blue Crystal" style="width:100px;height:100px;">
+            <img id="orange" src="https://images-na.ssl-images-amazon.com/images/I/61BJPYRDZkL._SY450_.jpg"
+                alt="Orange Crystal" style="width:100px;height:100px;">
+            <img id="red" src="https://images-na.ssl-images-amazon.com/images/I/61Ls5sXOvnL._SY450_.jpg"
+                alt="Red Crystal" style="width:100px;height:100px;">
+        </div>
+
+        <div class="Displays">
+            <!-- Button for displaying our random number, wins/losses, and user total-->
+            <div class="numberToMatch">
+                <h2>Random Number to Match:
+                    <span id="randomNumber"></span>
+                </h2>
+            </div>
+            <div class="winsAndLosses">
+                <h2>Wins:
+                    <span id="winsDisplay"></span>
+                    </br>
+                    Losses:
+                    <span id="lossesDisplay"></span>
+                </h2>
+            </div>
+            <div class="userTotal">
+                <h2>Your total score is:
+                    <span id="finalTotal"></span>
+                </h2>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var Random = Math.floor(Math.random() * 101 + 19)
+            // function that chooses a random number between 19 and 120 upon loading DOM
+
+            $("#randomNumber").text(Random);
+
+            var num1 = Math.floor(Math.random() * 11 + 1)
+            var num2 = Math.floor(Math.random() * 11 + 1)
+            var num3 = Math.floor(Math.random() * 11 + 1)
+            var num4 = Math.floor(Math.random() * 11 + 1)
+            // Each jewel has a random number between 1 and 12
+
+            var userTotal = 0;
+            var wins = 0;
+            var losses = 0;
+            $("#winsDisplay").text(wins);
+            $("#lossesDisplay").text(losses);
+
+            //resets the game
+            function reset() {
+                Random = Math.floor(Math.random() * 101 + 19);
+                console.log(Random)
+                $("#randomNumber").text(Random);
+                num1 = Math.floor(Math.random() * 11 + 1);
+                num2 = Math.floor(Math.random() * 11 + 1);
+                num3 = Math.floor(Math.random() * 11 + 1);
+                num4 = Math.floor(Math.random() * 11 + 1);
+                userTotal = 0;
+                $("#finalTotal").text(userTotal);
+            }
+            //adds the wins to the userTotal
+            function yay() {
+                alert("You won!");
+                wins++;
+                $("#winsDisplay").text(wins);
+                reset();
+            }
+            //addes the losses to the userTotal
+            function loser() {
+                alert("You lose!");
+                losses++;
+                $("#lossesDisplay").text(losses);
+                reset()
+            }
+            //sets up click for jewels
+            $("#purple").on("click", function () {
+                userTotal = userTotal + num1;
+                console.log("New userTotal= " + userTotal);
+                $("#finalTotal").text(userTotal);
+                //sets win/lose conditions
+                if (userTotal == Random) {
+                    yay();
+                }
+                else if (userTotal > Random) {
+                    loser();
+                }
+            })
+            $("#blue").on("click", function () {
+                userTotal = userTotal + num2;
+                console.log("New userTotal= " + userTotal);
+                $("#finalTotal").text(userTotal);
+                if (userTotal == Random) {
+                    yay();
+                }
+                else if (userTotal > Random) {
+                    loser();
+                }
+            })
+            $("#orange").on("click", function () {
+                userTotal = userTotal + num3;
+                console.log("New userTotal= " + userTotal);
+                $("#finalTotal").text(userTotal);
+                //sets win/lose conditions
+                if (userTotal == Random) {
+                    yay();
+                }
+                else if (userTotal > Random) {
+                    loser();
+                }
+            })
+            $("#red").on("click", function () {
+                userTotal = userTotal + num4;
+                console.log("New userTotal= " + userTotal);
+                $("#finalTotal").text(userTotal);
+
+                if (userTotal == Random) {
+                    yay();
+                }
+                else if (userTotal > Random) {
+                    loser();
+                }
+            });
+        });
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>
